@@ -1,0 +1,7 @@
+@import "tailwindcss";
+html{
+  font-family: 'outfit', sans-serif;
+}
+.btn{
+  cursor: pointer;
+}
