@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaYoutube } from "react-icons/fa"
+import { FaYoutube } from "react-icons/fa"
 import facebook from '../assets/Facebooksocial.svg';
 import x from '../assets/x.svg'
 function Socialmedia() {
