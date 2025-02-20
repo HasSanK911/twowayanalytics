@@ -8,8 +8,13 @@ import edit from '../assets/Edit.svg';
 import arrow from '../assets/Down 2.svg';
 import check from '../assets/Check.svg'
 import thumbnail from '../assets/thumbnail.svg'
+import Editmodal from './editmodal';
+import AddModal from "./addModal";
 function GroupPosts() {
   const [expandedRows, setExpandedRows] = useState<Record<number, boolean>>({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState<boolean>(false);
+
   const [data] = useState([
     {
       id: 1,
@@ -74,8 +79,8 @@ function GroupPosts() {
       </div>
       <div className="mt-6 bg-gray-100 ">
         <div className="bg-white rounded-2xl p-4 overflow-x-auto">
-          <div className="w-full overflow-x-auto">
-            <table className="min-w-full border-collapse text-left">
+          <div className=" overflow-x-auto">
+            <table className="w-full border-collapse text-left">
               <thead>
                 <tr className="border-b border-gray-200 text-[#9C9C9C] font-normal text-sm">
                   <th className="p-3">Text</th>
@@ -113,23 +118,26 @@ function GroupPosts() {
                       <td className="p-3">
                         <img src={item.thumbnail} alt="Thumbnail" className="w-12 h-12 rounded-md" />
                       </td>
-                      <td className="p-3 flex ">
-                        <button className="p-2 rounded-md btn ">
-                          <img src={edit} alt="edit" />
-                        </button>
-                        <button className="p-2 rounded-md btn ">
-                          <img src={check} alt="check" />
-                        </button>
-                        <button
-                          className="p-2 rounded-md btn "
-                          onClick={() => toggleRow(item.id)}
-                        >
-                          {expandedRows[item.id] ? (
-                            <img src={arrow} alt="arrow" />
-                          ) : (
-                            <img src={arrow} alt="arrow" />
-                          )}
-                        </button>
+                      <td className="p-3 ">
+                        <div className='flex gap-2 flex-nowrap w-[140px]'>
+                          <button className="p-2 rounded-md btn " onClick={() => setIsModalOpen(true)}>
+                            <img src={edit} alt="edit" />
+                          </button>
+                          <button className="p-2 rounded-md btn ">
+                            <img src={check} alt="check" />
+                          </button>
+                          <button
+                            className="p-2 rounded-md btn "
+                            onClick={() => toggleRow(item.id)}
+                          >
+                            {expandedRows[item.id] ? (
+                              <img src={arrow} alt="arrow" />
+                            ) : (
+                              <img src={arrow} alt="arrow" />
+                            )}
+                          </button>
+
+                        </div>
                       </td>
                     </tr>
                     {expandedRows[item.id] && (
@@ -137,23 +145,23 @@ function GroupPosts() {
                         <td className="p-3 font-medium text-nowrap">{item.text}</td>
                         <td className="p-3 flex ">
                           <div className='flex items-center h-[226px]'>
-                          {item.socialMedia.map((icon, i) => (
-                            <img key={i} src={icon} alt="Social Icon" className="w-8 h-8" />
-                          ))}
+                            {item.socialMedia.map((icon, i) => (
+                              <img key={i} src={icon} alt="Social Icon" className="w-8 h-8" />
+                            ))}
                           </div>
                         </td>
                         <td className="p-3 text-gray-500 text-nowrap">
                           {item.createdDate} {item.createdTime}
                         </td>
                         <td className="p-3">
-                        <span
-                          className={`px-4 py-1 rounded-2xl text-sm font-medium ${item.status === "Published"
-                            ? "bg-[#EEFFEE] text-[#35C335]"
-                            : "bg-[#FFF5EE] text-[#FF5C00]"
-                            }`}
-                        >
-                          {item.status}
-                        </span>
+                          <span
+                            className={`px-4 py-1 rounded-2xl text-sm font-medium ${item.status === "Published"
+                              ? "bg-[#EEFFEE] text-[#35C335]"
+                              : "bg-[#FFF5EE] text-[#FF5C00]"
+                              }`}
+                          >
+                            {item.status}
+                          </span>
                         </td>
                         <td className="p-3">
                           <img src={item.thumbnail} alt="Thumbnail" className="w-[200px] h-[200px] rounded-md" />
@@ -162,7 +170,7 @@ function GroupPosts() {
 
                         </td>
                       </tr>
-                      
+
                     )}
                   </React.Fragment>
                 ))}
@@ -171,6 +179,16 @@ function GroupPosts() {
           </div>
         </div>
       </div>
+      <Editmodal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onOpenAddModal={() => {
+          setIsModalOpen(false);
+          setIsAddModalOpen(true);
+        }}
+      />
+            <AddModal isOpen={isAddModalOpen} onClose={() => setIsAddModalOpen(false)} />
+
     </div>
   )
 }

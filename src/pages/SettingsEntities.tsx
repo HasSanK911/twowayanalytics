@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import change from '../assets/change.svg';
 import edit from '../assets/Editwhite.svg';
-import deletewhite from '../assets/deletewhite.svg'
+import deletewhite from '../assets/deletewhite.svg';
 import React from 'react';
 import thumbnail from '../assets/thumbnail.svg';
 import add from '../assets/add.svg'

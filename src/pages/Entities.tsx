@@ -1,8 +1,8 @@
 import filtericon from '../assets/filter.svg'
 import { useState } from 'react';
 import link from '../assets/Links.svg';
-import view from '../assets/view.svg'
-import add from '../assets/add.svg'
+import view from '../assets/view.svg';
+import add from '../assets/add.svg';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 function Entities() {
