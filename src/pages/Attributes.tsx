@@ -25,7 +25,7 @@ function Attributes() {
         },
     ]);
     return (
-        <div>
+        <div className=''>
             <h1 className="font-semibold text-2xl">Settings - Attributes of Entity</h1>
             <div className="flex gap-3">
 

@@ -31,7 +31,7 @@ function Publications() {
         },
       ]);
   return (
-    <div>
+    <div className='container-fluid'>
     <h1 className="font-semibold text-2xl">Filter Publications</h1>
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-4">
       <div>

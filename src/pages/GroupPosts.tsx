@@ -3,7 +3,6 @@ import filtericon from '../assets/filter.svg'
 import facebookIcon from "../assets/Facebook.svg";
 import instagramIcon from "../assets/Instagram.svg";
 import linkedinIcon from "../assets/Linkedin.svg";
-import React from 'react';
 import edit from '../assets/Edit.svg';
 import arrow from '../assets/Down 2.svg';
 import check from '../assets/Check.svg'
@@ -42,7 +41,7 @@ function GroupPosts() {
     setExpandedRows((prev) => ({ ...prev, [id]: !prev[id] }));
   };
   return (
-    <div>
+    <div className='container-fluid'>
       <h1 className="font-semibold text-2xl">Filter Publications</h1>
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-4">
         <div>
@@ -77,15 +76,15 @@ function GroupPosts() {
           <button className="bg-[#1A3561] flex items-center justify-center gap-2 btn text-[#ffffff] h-[47px] w-[98px] text-lg font-semibold rounded-lg"><img src={filtericon} alt="filtericon" />  Filter</button>
         </div>
       </div>
-      <div className="mt-6 bg-gray-100 ">
-        <div className="bg-white rounded-2xl p-4 overflow-x-auto">
-          <div className=" overflow-x-auto">
-            <table className="w-full border-collapse text-left">
+      <div className="mt-6 bg-gray-100 p-4 rounded-xl">
+        <div className="bg-white rounded-xl p-4 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="min-w-full border-collapse text-left text-sm">
               <thead>
-                <tr className="border-b border-gray-200 text-[#9C9C9C] font-normal text-sm">
+                <tr className="border-b border-gray-200 text-gray-500">
                   <th className="p-3">Text</th>
-                  <th className="p-3 text-nowrap">Social Media</th>
-                  <th className="p-3 text-nowrap">Created Time</th>
+                  <th className="p-3">Social Media</th>
+                  <th className="p-3">Created Time</th>
                   <th className="p-3">Status</th>
                   <th className="p-3">Thumbnail</th>
                   <th className="p-3">Actions</th>
@@ -93,86 +92,52 @@ function GroupPosts() {
               </thead>
               <tbody>
                 {data.map((item) => (
-                  <React.Fragment key={item.id}>
-                    <tr className="border-b border-gray-100 hover:bg-gray-50">
-
+                  <>
+                    <tr key={item.id} className="border-b border-gray-100 hover:bg-gray-50">
                       <td className="p-3 font-medium text-nowrap">{item.text}</td>
                       <td className="p-3 flex space-x-2">
                         {item.socialMedia.map((icon, i) => (
-                          <img key={i} src={icon} alt="Social Icon" className="w-8 h-8" />
+                          <img key={i} src={icon} alt="Social Icon" className="w-6 h-6" />
                         ))}
                       </td>
-                      <td className="p-3 text-gray-500 text-nowrap">
-                        {item.createdDate} {item.createdTime}
-                      </td>
+                      <td className="p-3 text-gray-500">{item.createdDate} {item.createdTime}</td>
                       <td className="p-3">
-                        <span
-                          className={`px-4 py-1 rounded-2xl text-sm font-medium ${item.status === "Published"
-                            ? "bg-[#EEFFEE] text-[#35C335]"
-                            : "bg-[#FFF5EE] text-[#FF5C00]"
-                            }`}
-                        >
-                          {item.status}
-                        </span>
+                        <span className={`px-4 py-1 rounded-xl text-sm font-medium ${item.status === 'Published' ? 'bg-green-100 text-green-600' : 'bg-orange-100 text-orange-600'}`}>{item.status}</span>
                       </td>
                       <td className="p-3">
                         <img src={item.thumbnail} alt="Thumbnail" className="w-12 h-12 rounded-md" />
                       </td>
-                      <td className="p-3 ">
-                        <div className='flex gap-2 flex-nowrap w-[140px]'>
-                          <button className="p-2 rounded-md btn " onClick={() => setIsModalOpen(true)}>
-                            <img src={edit} alt="edit" />
-                          </button>
-                          <button className="p-2 rounded-md btn ">
-                            <img src={check} alt="check" />
-                          </button>
-                          <button
-                            className="p-2 rounded-md btn "
-                            onClick={() => toggleRow(item.id)}
-                          >
-                            {expandedRows[item.id] ? (
-                              <img src={arrow} alt="arrow" />
-                            ) : (
-                              <img src={arrow} alt="arrow" />
-                            )}
-                          </button>
-
-                        </div>
+                      <td className="p-3 flex gap-2">
+                        <button className="p-2 rounded-md btn" onClick={() => setIsModalOpen(true)}>
+                          <img src={edit} alt="edit" />
+                        </button>
+                        <button className="p-2 rounded-md btn">
+                          <img src={check} alt="check" />
+                        </button>
+                        <button className="p-2 rounded-md btn" onClick={() => toggleRow(item.id)}>
+                          <img src={arrow} alt="toggle" className={`${expandedRows[item.id] ? 'rotate-180' : ''} transition-transform`} />
+                        </button>
                       </td>
                     </tr>
                     {expandedRows[item.id] && (
-                      <tr className="border-b-1 border-b-gray-200">
-                        <td className="p-3 font-medium text-nowrap">{item.text}</td>
-                        <td className="p-3 flex ">
-                          <div className='flex items-center h-[226px]'>
-                            {item.socialMedia.map((icon, i) => (
-                              <img key={i} src={icon} alt="Social Icon" className="w-8 h-8" />
-                            ))}
+                      <tr className="border-b border-gray-200">
+                        <td colSpan={6} className="p-4 bg-gray-50">
+                          <div className="flex flex-col sm:flex-row items-center gap-4">
+                            <img src={item.thumbnail} alt="Thumbnail" className="w-32 h-32 rounded-md" />
+                            <div>
+                              <p className="text-lg font-semibold">{item.text}</p>
+                              <p className="text-gray-500">{item.createdDate} {item.createdTime}</p>
+                              <div className="flex space-x-2 mt-2">
+                                {item.socialMedia.map((icon, i) => (
+                                  <img key={i} src={icon} alt="Social Icon" className="w-6 h-6" />
+                                ))}
+                              </div>
+                            </div>
                           </div>
                         </td>
-                        <td className="p-3 text-gray-500 text-nowrap">
-                          {item.createdDate} {item.createdTime}
-                        </td>
-                        <td className="p-3">
-                          <span
-                            className={`px-4 py-1 rounded-2xl text-sm font-medium ${item.status === "Published"
-                              ? "bg-[#EEFFEE] text-[#35C335]"
-                              : "bg-[#FFF5EE] text-[#FF5C00]"
-                              }`}
-                          >
-                            {item.status}
-                          </span>
-                        </td>
-                        <td className="p-3">
-                          <img src={item.thumbnail} alt="Thumbnail" className="w-[200px] h-[200px] rounded-md" />
-                        </td>
-                        <td className="p-3 flex ">
-
-                        </td>
                       </tr>
-
                     )}
-                  </React.Fragment>
+                  </>
                 ))}
               </tbody>
             </table>

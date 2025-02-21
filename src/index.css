@@ -1,6 +1,7 @@
 @import "tailwindcss";
 html{
   font-family: 'outfit', sans-serif;
+  background-color: #F2F3F5;
 }
 .btn{
   cursor: pointer;
@@ -70,4 +71,52 @@ box-shadow: 0px 0px 8px 0px #0DEEFC52 inset;
   line-height: 21.71px;
   letter-spacing: 0%;
   text-align: center;
+}
+.ps-sidebar-root {
+  border: none !important;
+  height: 100% !important;
+}
+
+.ps-submenu-content {
+  background-color: #1A3561 !important;
+}
+
+.ps-submenu-content .ps-menu-button {
+  padding-left: 2rem !important;
+}
+
+.ps-menu-button:hover {
+  background-color: #8E8E93 !important;
+}
+
+.ps-active > .ps-menu-button {
+  background-color: #8E8E93 !important;
+}
+
+.ps-submenu-expand-icon {
+  color: white !important;
+}
+
+/* Submenu icon customization */
+.ps-submenu-expand-icon span {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* Override submenu expand icon with custom icons */
+.ps-submenu-expand-icon span::before {
+  content: none !important;
+}
+
+.ps-submenu-expand-icon span::after {
+  content: none !important;
+}
+.css-dip3t8{
+background-color: #1A3561 !important;
+}
+.css-wx7wi4{
+  width: auto !important;
+  height: auto !important;
+  min-width: auto !important;
+  min-height: auto !important;
 }
