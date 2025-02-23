@@ -76,7 +76,8 @@ function GroupPosts() {
           <button className="bg-[#1A3561] flex items-center justify-center gap-2 btn text-[#ffffff] h-[47px] w-[98px] text-lg font-semibold rounded-lg"><img src={filtericon} alt="filtericon" />  Filter</button>
         </div>
       </div>
-      <div className="mt-6 bg-gray-100 p-4 rounded-xl">
+      <div className="row">
+      <div className="mt-6 bg-gray-100 rounded-xl">
         <div className="bg-white rounded-xl p-4 overflow-hidden">
           <div className="overflow-x-auto">
             <table className="min-w-full border-collapse text-left text-sm">
@@ -143,6 +144,8 @@ function GroupPosts() {
             </table>
           </div>
         </div>
+      </div>
+
       </div>
       <Editmodal
         isOpen={isModalOpen}

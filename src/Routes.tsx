@@ -8,7 +8,8 @@ import Entities from "./pages/Entities";
 import SettingsEntities from "./pages/SettingsEntities";
 import Attributes from "./pages/Attributes";
 import Socialmedia from "./pages/Socialmedia";
-
+import EntitiesRelatedtoPublication from "./pages/entitiesrelatedtopublication";
+import LinkEntitiesToPost from "./pages/linkentitiestopost";
 const AppRoutes: React.FC = () => {
   return (
     <Router>
@@ -20,6 +21,10 @@ const AppRoutes: React.FC = () => {
         <Route path="/settingsentities" element={<MainLayout><SettingsEntities /></MainLayout>} />
         <Route path="/attributes" element={<MainLayout><Attributes /></MainLayout>} />
         <Route path="/socialmedia" element={<MainLayout><Socialmedia /></MainLayout>} />
+        <Route path="/entitiesrelatedtopublication" element={<MainLayout><EntitiesRelatedtoPublication/></MainLayout>}/>
+        <Route path="/linkentitiestopost" element={<MainLayout><LinkEntitiesToPost/></MainLayout>}/>
+
+
 
 
 

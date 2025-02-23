@@ -7,7 +7,10 @@ import link from '../assets/Links.svg';
 import view from '../assets/view.svg'
 import thumbnail from '../assets/thumbnail.svg'
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 function Publications() {
+  const navigate = useNavigate();
+
     const [data] = useState([
         {
           id: 1,
@@ -85,7 +88,7 @@ function Publications() {
         <button className="bg-[#1A3561] flex items-center justify-center gap-2 btn text-[#ffffff] h-[47px] w-[98px] text-lg font-semibold rounded-lg"><img src={filtericon} alt="filtericon" />  Filter</button>
       </div>
     <div className="mt-6 bg-gray-100 ">
-      <div className="bg-white rounded-2xl p-4 overflow-x-auto">
+      <div className="bg-white rounded-2xl p-4 overflow-hidden">
         <div className="w-full overflow-x-auto">
           <table className="min-w-full border-collapse text-left">
             <thead>
@@ -94,7 +97,7 @@ function Publications() {
                 <th className="p-3 text-nowrap">Social Media</th>
                 <th className="p-3 text-nowrap">Created Time</th>
                 <th className="p-3">Entities</th>
-                <th className="p-3">Link Count</th>
+                <th className="p-3 text-nowrap">Link Count</th>
                 <th className="p-3">Actions</th>
               </tr>
             </thead>
@@ -119,10 +122,10 @@ function Publications() {
                       0
                     </td>
                     <td className="p-3 flex ">
-                      <button className="p-2 rounded-md btn ">
+                      <button className="p-2 rounded-md btn "   onClick={() => navigate("/linkentitiestopost")}>
                         <img src={view} alt="view" />
                       </button>
-                      <button className="p-2 rounded-md btn ">
+                      <button className="p-2 rounded-md btn "   onClick={() => navigate("/entitiesrelatedtopublication")}>
                         <img src={link} alt="link" />
                       </button>
                      

@@ -47,7 +47,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   ];
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div className="container-fluid">
+    <div style={{ display: "flex", height: "100vh" }} >
       <Sidebar
         collapsed={collapsed}
         style={{
@@ -99,10 +100,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           )}
         </Menu>
       </Sidebar>
-      <div style={{ flexGrow: 1 }} className="container-fluid">
+      <div style={{ flexGrow: 1 }} className="container-fluid min-h-screen overflow-scroll [&::-webkit-scrollbar]:w-0 [&::-webkit-scrollbar]:h-0">
         <Header />
         <main className="p-4 bg-[#f2f3f5] w-full">{children}</main>
       </div>
+    </div>
+
     </div>
   );
 };
